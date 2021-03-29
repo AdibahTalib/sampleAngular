@@ -26,6 +26,10 @@ export class CovidComponent implements OnInit {
 
   public updateDesc: any;
 
+  public postDesc: any;
+
+  public deleteSoapDesc: any;
+
   constructor(
     private httpClient: HttpClient,
     public covidApiService: CovidApiService,
@@ -36,11 +40,10 @@ export class CovidComponent implements OnInit {
   ngOnInit(): void {
     this.descObject = {};
     this.updateDesc = {};
+    this.postDesc = {};
+    this.deleteSoapDesc = {};
     this.getCovid();
     this.getCovidDesc();
-
-    console.log("Covid Component Inited");
-    console.log("Total of Description Column Row --->" + this.descObject.length);
   }
 
   getCovid(): any {
@@ -61,10 +64,26 @@ export class CovidComponent implements OnInit {
     this.covidApiService.getCovidDesc().subscribe((data: any) => {
       console.log(data);
       this.covidTotalDesc = data;
+
+      console.log("Covid Component Inited");
+      console.log("Total of Description Column Row ---> " + this.covidTotalDesc.length);
     });
 
     return this.covidTotalDesc;
   }
+
+// another method
+  // async getCovidDesc(): Promise<any> {
+  //   await this.covidApiService.getCovidDesc().toPromise().then((data:any) => {
+  //     console.log(data);
+  //     this.covidTotalDesc = data;
+  //   });
+
+  //   console.log("Covid Component Inited");
+  //   console.log("Total of Description Column Row ---> " + this.covidTotalDesc.length);
+
+  //   return this.covidTotalDesc;
+  // }
 
   onSelectDesc(desc: any) {
 
@@ -88,8 +107,6 @@ export class CovidComponent implements OnInit {
           this.getCovidDesc();
         });
     }
-
-
   }
 
   addDesc() {
@@ -118,5 +135,30 @@ export class CovidComponent implements OnInit {
       resolve => {
         this.getCovidDesc();
       });
+  }
+
+  addPost() {
+
+    this.covidApiService.addPost(this.postDesc).then(
+      resolve => {
+        this.getCovidDesc();
+      });
+
+    // if the method below being called using async way, then the table desc wont be updated accordingly after data added
+    // this.getCovidDesc();   
+  }
+
+  deleteSoap() {
+    console.log("covidTotalDesc length-->" + this.covidTotalDesc.length);
+
+    if (this.covidTotalDesc.length == 0) {
+      this.confirmationDialogService.confirm(GlobalConstants.errorMessageFE, "List is Empty");
+    }
+    else {
+      this.covidApiService.deleteSoap(this.deleteSoapDesc.description).then(
+        resolve => {
+          this.getCovidDesc();
+        });
+    }
   }
 }

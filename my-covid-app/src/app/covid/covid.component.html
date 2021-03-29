@@ -64,4 +64,27 @@
   </form>
   <!-- Put record Ends  -->
 
+  <!-- Add Post starts  -->
+  <br><br><br>
+  <legend style="color:black;font-weight:bold;">Section D. Add Post Record</legend>
+
+  <label for="Description">Description</label>
+  <input type="text" id="postDesc" [(ngModel)]="postDesc.description" name="post">
+  <p></p>
+
+  <input type="submit" value="Post" (click)="addPost()">
+  <!-- Add Post ends  -->
+
+  <!-- Delete With Condition starts  -->
+  <br><br><br>
+  <legend style="color:black;font-weight:bold;">Section E. Delete With Condition</legend>
+
+    <label for="Description">Description</label>
+    <input type="text" id="deleteSoapDesc" [(ngModel)]="deleteSoapDesc.description" name="deleteSoapDesc">
+    <p></p>
+
+    <input type="submit" value="Delete With Condition" (click)="deleteSoap()">
+
+  <!-- Delete With Condition ends  -->
+
 </div>

@@ -54,7 +54,6 @@ export class CovidApiService {
     });
   }
 
-
   public putDesc(body : any): Promise<any> {
 
     return new Promise((resolve) => {
@@ -70,6 +69,37 @@ export class CovidApiService {
           this.confirmationDialogService.confirm(GlobalConstants.errorMessage, GlobalMethods.getError(error));
         })
 
+    });
+  }
+
+  public addPost(body: any): Promise<any> {
+    return new Promise((resolve) => {
+      return this.httpClient.post(`http://localhost:8081/covid/post`, body).subscribe((data: any) => {
+        console.log(data);
+        resolve(data);
+      }
+        ,
+        (error) => {
+          console.log(error);
+          this.confirmationDialogService.confirm(GlobalConstants.errorMessage, GlobalMethods.getError(error));
+        })
+    });
+  }
+
+  public deleteSoap(desc: string): Promise<any> {
+
+    return new Promise((resolve) => {
+      return this.httpClient.delete(`http://localhost:8081/covid/delete/soap?desc=` + desc).subscribe((data: any) => {
+        console.log(data);
+        resolve(data);
+
+      }
+        ,
+        (error) => {
+          console.log(error);
+          this.confirmationDialogService.confirm(GlobalConstants.errorMessage, GlobalMethods.getError(error));
+        }
+      )
     });
   }
 }
