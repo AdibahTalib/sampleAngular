@@ -1,13 +1,13 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { GlobalConstants } from "src/environments/GlobalConstants";
-import { GlobalMethods } from "src/environments/GlobalMethods";
-import { ConfirmationDialogService } from "./confirmation-dialog/confirmation-dialog.service";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { GlobalConstants } from 'src/environments/GlobalConstants';
+import { GlobalMethods } from 'src/environments/GlobalMethods';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CovidApiService {
+export class BonusService {
 
   constructor(private httpClient: HttpClient, private confirmationDialogService: ConfirmationDialogService) { }
 
@@ -15,14 +15,14 @@ export class CovidApiService {
     return this.httpClient.get(`http://localhost:8081/covid/get/latest`, { responseType: 'text' });
   }
 
-  public getCovidDesc(): any {
-    return this.httpClient.get(`http://localhost:8081/covid/get/desc`);
+  public getCovidDescBonus(): any {
+    return this.httpClient.get(`http://localhost:8081/covid/get/bonus`);
   }
 
-  public deleteDesc(id: number): Promise<any> {
+  public deleteDescBonus(id: number): Promise<any> {
 
     return new Promise((resolve) => {
-      return this.httpClient.delete(`http://localhost:8081/covid/delete?id=` + id).subscribe((data: any) => {
+      return this.httpClient.delete(`http://localhost:8081/covid/delete/bonus?id=` + id).subscribe((data: any) => {
         console.log(data);
         resolve(data);
 
@@ -36,10 +36,10 @@ export class CovidApiService {
     });
   }
 
-  public addDesc(desc: string): Promise<any> {
+  public addDescBonus(desc: string): Promise<any> {
 
     return new Promise((resolve) => {
-      return this.httpClient.get(`http://localhost:8081/covid/add?desc=` + desc).subscribe((data: any) => {
+      return this.httpClient.get(`http://localhost:8081/covid/add/bonus?desc=` + desc).subscribe((data: any) => {
 
         console.log(data);
         resolve(data);
@@ -54,10 +54,10 @@ export class CovidApiService {
     });
   }
 
-  public putDesc(body : any): Promise<any> {
+  public putDescBonus(body : any): Promise<any> {
 
     return new Promise((resolve) => {
-      return this.httpClient.put(`http://localhost:8081/covid/put`, body).subscribe((data: any) => {
+      return this.httpClient.put(`http://localhost:8081/covid/put/bonus`, body).subscribe((data: any) => {
 
         console.log(data);
         resolve(data);
@@ -72,9 +72,9 @@ export class CovidApiService {
     });
   }
 
-  public addPost(body: any): Promise<any> {
+  public addPostBonus(body: any): Promise<any> {
     return new Promise((resolve) => {
-      return this.httpClient.post(`http://localhost:8081/covid/post`, body).subscribe((data: any) => {
+      return this.httpClient.post(`http://localhost:8081/covid/post/bonus`, body).subscribe((data: any) => {
         console.log(data);
         resolve(data);
       }
@@ -86,10 +86,10 @@ export class CovidApiService {
     });
   }
 
-  public deleteSoap(desc: string): Promise<any> {
+  public deleteSoapBonus(desc: string): Promise<any> {
 
     return new Promise((resolve) => {
-      return this.httpClient.delete(`http://localhost:8081/covid/delete/soap?desc=` + desc).subscribe((data: any) => {
+      return this.httpClient.delete(`http://localhost:8081/covid/delete/soap/bonus?desc=` + desc).subscribe((data: any) => {
         console.log(data);
         resolve(data);
 

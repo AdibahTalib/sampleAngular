@@ -25,7 +25,7 @@ export class MiningComponent implements OnInit {
   input: string = "";
 
   public getBasicMining(): any {
-    this.httpClient.get(`http://localhost:8081/covid/mining/my`, { responseType: 'text' })
+    this.httpClient.get(`http://localhost:8091/covid/mining/my`, { responseType: 'text' })
       .subscribe((data: any) => 
                   {
                     // assign HTTP response with local variable
