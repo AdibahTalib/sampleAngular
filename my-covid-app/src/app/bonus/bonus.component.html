@@ -75,15 +75,8 @@
     <input type="submit" value="Post" (click)="addPostBonus()">
     <!-- Add Post ends  -->
   
-    <!-- Delete With Condition starts  -->
-    <br><br><br>
-    <legend style="color:black;font-weight:bold;">Section E. Delete With Condition</legend>
-  
-      <label for="Description">Description</label>
-      <input type="text" id="deleteSoapDesc" [(ngModel)]="deleteSoapDescBonus.description" name="deleteSoapDesc">
-      <p></p>
-  
-      <input type="submit" value="Delete With Condition" (click)="deleteSoapBonus()">
-  
-    <!-- Delete With Condition ends  -->
+    <!-- Section E & F starts-->
+    <app-covid-delete></app-covid-delete>
+    <!-- Section E & F ends-->
+
   </div>

@@ -25,8 +25,6 @@ export class BonusComponent implements OnInit {
 
   public postDescBonus: any;
 
-  public deleteSoapDescBonus: any;
-
   constructor(
     private httpClient: HttpClient,
     public bonusService: BonusService,
@@ -38,7 +36,6 @@ export class BonusComponent implements OnInit {
     this.descObjectBonus = {};
     this.updateDescBonus = {};
     this.postDescBonus = {};
-    this.deleteSoapDescBonus = {};
     this.getCovid();
     this.getCovidDescBonus();
   }
@@ -143,19 +140,5 @@ export class BonusComponent implements OnInit {
 
     // if the method below being called using async way, then the table desc wont be updated accordingly after data added
     // this.getCovidDesc();   
-  }
-
-  deleteSoapBonus() {
-    console.log("covidTotalDesc length-->" + this.covidTotalDescBonus.length);
-
-    if (this.covidTotalDescBonus.length == 0) {
-      this.confirmationDialogService.confirm(GlobalConstants.errorMessageFE, "List is Empty");
-    }
-    else {
-      this.bonusService.deleteSoapBonus(this.deleteSoapDescBonus.description).then(
-        resolve => {
-          this.getCovidDescBonus();
-        });
-    }
   }
 }

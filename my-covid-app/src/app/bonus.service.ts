@@ -102,4 +102,21 @@ export class BonusService {
       )
     });
   }
+
+  deleteDuplicate(): Promise<any> {
+
+    return new Promise((resolve) => {
+      return this.httpClient.delete(`http://localhost:8081/covid/delete/duplicate/bonus`).subscribe((data: any) => {
+        console.log(data);
+        resolve(data);
+
+      }
+        ,
+        (error) => {
+          console.log(error);
+          this.confirmationDialogService.confirm(GlobalConstants.errorMessage, GlobalMethods.getError(error));
+        }
+      )
+    });
+  }
 }
